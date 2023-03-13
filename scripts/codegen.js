@@ -14,6 +14,7 @@ telescope({
         'wasmd-0.30/third_party/proto',
         'ibc-go-4.2/proto',
         'ibc-go-4.2/third_party/proto',
+        'aura-0.4.3/proto'
     ],
     outPath: outPath,
     options: {

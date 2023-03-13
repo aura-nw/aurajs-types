@@ -7,3 +7,6 @@
 [submodule "ibc-go"]
 	path = ibc-go-4.2
 	url = https://github.com/cosmos/ibc-go
+[submodule "aura-0.4.3"]
+	path = aura-0.4.3
+	url = https://github.com/aura-nw/aura.git
