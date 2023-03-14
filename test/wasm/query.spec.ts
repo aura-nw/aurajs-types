@@ -1,14 +1,16 @@
-import { BeforeAll, Describe, Test } from '@jest-decorated/core';
+import { Describe, Test } from '@jest-decorated/core';
 import { createProtobufRpcClient, QueryClient } from "@cosmjs/stargate";
 import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
-import { QueryClientImpl } from '../../src/cosmos/bank/v1beta1/query';
+import { fromHex } from "@cosmjs/encoding";
+import { QueryClientImpl } from '../../src/cosmwasm/wasm/v1/query';
+import Long from 'long';
 const rpcEndpoint = "https://rpc.euphoria.aura.network"
 
-@Describe('Test query cosmos sdk')
+@Describe('Test query wasm')
 export default class Query {
 
-    @Test('Query bank balance')
-    public async BankBalance() {
+    @Test('Query code info')
+    public async CodeInfo() {
         const tendermintClient = await Tendermint34Client.connect(rpcEndpoint);
 
         // The generic Stargate query client knows how to use the Tendermint client to submit unverified ABCI queries
@@ -21,11 +23,13 @@ export default class Query {
         const queryService = new QueryClientImpl(rpcClient);
 
         // Now you can use this service to submit queries
-        const queryResult = await queryService.Balance({
-            address: 'aura1ucp33srru7g45ku6w207kc4hy6xd6psvq5le7h',
-            denom: 'ueaura'
+        const queryResult = await queryService.Code({
+            codeId: new Long(547, 0)
         });
-        console.log(queryResult);
+        expect(queryResult.codeInfo?.codeId.toString()).toBe('547')
+        expect(queryResult.codeInfo?.creator).toBe('aura12yxrag2d4e7lt6s6y5x59amhvehx52f7t2frjm')
+        expect(queryResult.codeInfo?.dataHash).toEqual(fromHex("1D72D4075E3453287403A85787A63727287E4138F3AD37B55CD6BDAB91A55279"))
+
     }
 }
 

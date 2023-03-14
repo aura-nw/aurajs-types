@@ -3,7 +3,7 @@ import { MsgSend } from '../../src/cosmos/bank/v1beta1/tx';
 import { getClient } from '../../helpers/tx-client';
 
 
-@Describe('Test tx')
+@Describe('Test tx cosmos sdk')
 export default class Tx {
 
     @Test('tx bank send')
