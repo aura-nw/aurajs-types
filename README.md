@@ -26,7 +26,7 @@ const queryResult = await queryService.Balance({
 ### Tx
 
 ```sh
-const client = await getClient()
+const client = await getClient(mnemonic, rpcEndpoint)
 const myAddress = "aura1yges2jkc7gnpgejzkq8jag3m87vqtmnpm979ll";
 const message = {
     typeUrl: "/cosmos.bank.v1beta1.MsgSend",

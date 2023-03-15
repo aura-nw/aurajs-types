@@ -19,10 +19,8 @@ const auraTypes: ReadonlyArray<[string, GeneratedType]> = [
     ["/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount", MsgCreatePeriodicVestingAccount]
 ];
 
-export async function getClient() {
+export async function getClient(mnemonic: string, rpcEndpoint: string) {
     const myRegistry = new Registry([...defaultStargateTypes, ...wasmTypes, ...auraTypes]);
-    const mnemonic = 'cheap benefit follow mirror shadow hood ensure into pioneer sister fold deposit weasel speed pulp eternal kiss safe demise poem once pepper nice rain';
-    const rpcEndpoint = "https://rpc.euphoria.aura.network"
     // Inside an async function...
     const signer = await DirectSecp256k1HdWallet.fromMnemonic(
         mnemonic,
