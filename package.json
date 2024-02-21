@@ -40,7 +40,7 @@
     "test": "NODE_OPTIONS='--loader ts-node/esm' jest test"
   },
   "dependencies": {
-    "@cosmjs/stargate": "^0.30.0",
+    "@cosmjs/stargate": "^0.32.2",
     "long": "^4.0.0",
     "protobufjs": "~6.11.2"
   },
